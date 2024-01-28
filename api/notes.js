@@ -27,6 +27,8 @@ const bodyParser = require('body-parser');
 //Creating the new app
 const app = express(); 
 
+//defining
+
 //Apps behaviors 
 //Want everything to be sent as a JSON
 app.use(bodyParser.json()); 
@@ -64,3 +66,4 @@ try{
 }
 }); 
 
+app.list
