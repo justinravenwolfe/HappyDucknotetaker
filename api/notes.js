@@ -27,7 +27,8 @@ const bodyParser = require('body-parser');
 //Creating the new app
 const app = express(); 
 
-//defining
+//defining a port 
+const port = process.env.PORT || 3000; 
 
 //Apps behaviors 
 //Want everything to be sent as a JSON
@@ -41,6 +42,15 @@ const readDb = async() => await fs.readJson(db_file);
 //Used to write to db 
 /*const writeDb = async() => await fs.writeJson(db_file, data); */
 
+//Navigation through the website
+app.get('/', async(req, res) => {
+    app.render('../Develop/index.html');
+});
+app.get('/notes', async(req, res) => {
+    app.render('../Develop/notes.html');
+    //Code to load in the notes 
+    
+});
 //Function to write to JSON-file<-Save notes to the database
 app.post('/api/notes', async(req, res) => {
 //name attributes html <- title, text
@@ -66,4 +76,7 @@ try{
 }
 }); 
 
-app.list
+//Allowing the application to run on a specific port 
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+}); 
