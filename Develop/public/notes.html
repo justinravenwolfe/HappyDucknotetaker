@@ -19,14 +19,16 @@
     <nav class="navbar bg-info">
       <a class="navbar-brand text-light p-3" href="/">Note Taker </a>
       <div class="icons">
-        <button type="button" class="btn btn-outline-light btn-sm save-note">
-          <span class="fas fa-save"></span>
-          <span>Save Note</span>
-        </button>
+        
         <button type="button" class="btn btn-outline-light btn-sm new-note">
           <span class="fas fa-edit"></span>
           <span>New Note</span>
         </button>
+        <button onlick = "submit_note()"id = "submitBtn" type="button" class="btn btn-outline-light btn-sm save-note">
+          <span class="fas fa-save"></span>
+          <span>Save Note</span>
+        </button>
+        <!--Give action to these buttons <- Event Listener-->
         <button type="button" class="btn btn-sm btn-outline-danger clear-btn">
           <span class="fas fa-times"></span>
           <span>Clear Form</span>
@@ -41,16 +43,18 @@
           </div>
         </div>
         <div class="col-8">
-          <form class="note-form">
+          <form id = "post_form" action = "/saveNote" method = "POST" class="note-form">
             <input
             class="note-title"
+            id = "title"
             placeholder="Note Title"
             name = "title"
             maxlength="28"
             type="text"
             />
-            <textarea name = "text" class="note-textarea" placeholder="Note Text"></textarea>
+            <textarea id = "text-area" name = "text" class="note-textarea" placeholder="Note Text"></textarea>
             </form>
+           
         </div>
       </div>
     </div>

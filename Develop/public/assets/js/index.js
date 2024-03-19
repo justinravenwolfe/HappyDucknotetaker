@@ -35,15 +35,34 @@ const getNotes = () =>
       'Content-Type': 'application/json'
     }
   });
+function submit_note (){
+  var submit_btn = document.getElementById("submitBtn");
+    console.log("Attempting to save note")
+    var titler = document.getElementById("title");
+    var bodyr = document.getElementById('text-area');
+    const curr_note = {
+      title: titler.value,
+      text: bodyr.value,  
+    }; 
+    fetch('../../api/notes.js/save', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(curr_note)
+    }).then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok.');
+  }).then(data => {
+      console.log('Success:', data);
+  }).catch(error => {
+      console.error('Error:', error);
+  }); 
 
-const saveNote = (note) =>
-  fetch('/api/notes', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(note)
-  });
+}
+
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {

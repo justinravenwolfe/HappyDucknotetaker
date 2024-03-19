@@ -2,6 +2,7 @@
 //This is to speed app development w/ predefined routes
 const express = require('express'); //Application of node.js
 //To interact with the database 
+const cors = require('cors'); 
 /*
 SELECT * FROM cats; <- Print out the whole table <- query, SQL<- structured query language 
 CRUD <- Create, read, update, delete 
@@ -33,6 +34,8 @@ const port = process.env.PORT || 3000;
 //Apps behaviors 
 //Want everything to be sent as a JSON
 app.use(bodyParser.json()); 
+//Webpages we'll show/edit <-The node can connect to the html files
+
 
 //Path to the database 
 const db_file = '../Develop/db/db.json';
@@ -52,7 +55,8 @@ app.get('/notes', async(req, res) => {
     
 });
 //Function to write to JSON-file<-Save notes to the database
-app.post('/api/notes', async(req, res) => {
+app.post('/save', async(req, res) => {
+    console.log("Attempting to save note");
 //name attributes html <- title, text
 const {title, text} = req.body; 
 //data model <- Form of the database data
