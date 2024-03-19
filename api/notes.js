@@ -16,14 +16,18 @@ _______
 Database contains tables, tables are in a database 
 */
 //To interact with json 
-const fs = require('fs');
+const fs = require('fs');   ///to save data of the notes
+
 //This will used to deploy once finished on local
 const heroku = require('heroku');
+
 //Used to make unique ids for each note in the database 
 const uuid = require('uuid');
 //Made a note <- 5e6ht7s <- note_id 
 //Used to allow things to be sent in a json form from front-end t back-end
 const bodyParser = require('body-parser'); 
+
+const path=require("path")
 
 //Creating the new app
 const app = express(); 
@@ -35,6 +39,7 @@ const port = process.env.PORT || 3000;
 //Want everything to be sent as a JSON
 app.use(bodyParser.json()); 
 //Webpages we'll show/edit <-The node can connect to the html files
+app.use(express.static('./public'));
 
 
 //Path to the database 
@@ -47,10 +52,15 @@ const readDb = async() => await fs.readJson(db_file);
 
 //Navigation through the website
 app.get('/', async(req, res) => {
-    app.render('../Develop/index.html');
+
+    //res.send("hello")
+
+    res.sendFile("./index.html");
 });
 app.get('/notes', async(req, res) => {
-    app.render('../Develop/notes.html');
+
+    
+  res.sendFile("./notes.html")
     //Code to load in the notes 
     
 });
