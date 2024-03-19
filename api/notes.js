@@ -88,7 +88,25 @@ app.get('/', async(req, res) => {
 app.get('/notes', async(req, res) => {
 
     
-  res.redirect("/notes.html")
+    try{
+        //Wait to get the database info sent back
+    
+        readDb((err,db)=>{
+           if(err){
+            throw new Error("Error reading json")
+           }
+    
+           //console.log(db)
+            
+            res.json(db.notes); 
+           
+           
+        })
+       
+    }catch(error){
+        console.log(error);
+        res.status(500).send('Server Error'); 
+    }
     //Code to load in the notes 
     
 });

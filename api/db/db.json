@@ -4,8 +4,16 @@
       "id": "1333f1f8-729c-4ffb-b06a-0e8c0877ddd8",
       "title": "dogs",
       "text": "cats"
+    },
+    {
+      "id": "40fe6881-a3cc-4c01-81e2-558f0d5868fa",
+      "title": "dog",
+      "text": "puppy"
+    },
+    {
+      "id": "b67d2cf9-65f0-4291-8144-fcf75b7eaaee",
+      "title": "hkh",
+      "text": "jkg"
     }
   ]
 }
-
-///implement writeDb function - finish save notes

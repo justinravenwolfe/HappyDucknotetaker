@@ -28,13 +28,14 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
-const getNotes = () =>
-  fetch('/api/notes', {
+const getNotes = () =>{
+  return fetch('/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     }
-  });
+  })
+}
 function submit_note (){
   var submit_btn = document.getElementById("submitBtn");
     console.log("Attempting to save note")
@@ -193,7 +194,13 @@ const renderNoteList = async (notes) => {
     li.dataset.note = JSON.stringify(note);
 
     noteListItems.push(li);
+  
   });
+
+  console.log(noteListItems)
+  for(let el of noteListItems){
+    document.getElementById("list-group").appendChild(el)
+  }
 
   if (window.location.pathname === '/notes') {
     noteListItems.forEach((note) => noteList[0].append(note));
@@ -201,7 +208,9 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
-const getAndRenderNotes = () => getNotes().then(renderNoteList);
+const getAndRenderNotes = () => getNotes().then(notes=>{
+  renderNoteList(notes)
+});
 
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
