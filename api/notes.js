@@ -43,12 +43,27 @@ app.use(express.static('./public'));
 
 
 //Path to the database 
-const db_file = '../Develop/db/db.json';
+const db_file = './db/db.json';
 
 //Read/return all the data from the database
-const readDb = async() => await fs.readJson(db_file); 
+
 //Used to write to db 
-/*const writeDb = async() => await fs.writeJson(db_file, data); */
+const readDb = (callback) => {
+    fs.readFile(db_file, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading database:', err);
+            callback(err, null);
+            return;
+        }
+        try {
+            const jsonData = JSON.parse(data);
+            callback(null, jsonData);
+        } catch (parseErr) {
+            console.error('Error parsing JSON:', parseErr);
+            callback(parseErr, null);
+        }
+    });
+};
 
 //Navigation through the website
 app.get('/', async(req, res) => {
@@ -79,11 +94,20 @@ const newNote = {
 //"notes": [_,_,_]
 try{
     //Wait to get the database info sent back
-    const db = await readDb(); 
-    db.notes.push(newNote); 
-    //200 of higher <- went well no issue
-    //404 error 
-    res.status(200).json(newNote); 
+
+    readDb((err,db)=>{
+       if(err){
+        throw new Error("Error reading json")
+       }
+
+       //console.log(db)
+        
+        db[0].notes.push(newNote); 
+        //200 of higher <- went well no issue
+        //404 error 
+        res.status(200).json(newNote); 
+    })
+   
 }catch(error){
     console.log(error);
     res.status(500).send('Server Error'); 
