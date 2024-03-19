@@ -65,6 +65,19 @@ const readDb = (callback) => {
     });
 };
 
+const writeDb = (data, callback) => {
+    const jsonData = JSON.stringify(data, null, 2); // Convert data to JSON string with 2 spaces indentation
+    fs.writeFile(db_file, jsonData, 'utf8', (err) => {
+        if (err) {
+            console.error('Error writing to database:', err);
+            callback(err);
+        } else {
+            console.log('Data written to database successfully.');
+            callback(null);
+        }
+    });
+};
+
 //Navigation through the website
 app.get('/', async(req, res) => {
 
@@ -102,10 +115,16 @@ try{
 
        //console.log(db)
         
-        db[0].notes.push(newNote); 
+        db.notes.push(newNote); 
         //200 of higher <- went well no issue
         //404 error 
-        res.status(200).json(newNote); 
+        writeDb(db,(err)=>{
+            if(err){
+                throw new Error("Error writing json")
+               }
+             res.status(200).json(newNote); 
+        })
+       
     })
    
 }catch(error){

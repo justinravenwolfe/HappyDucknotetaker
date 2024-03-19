@@ -1,5 +1,11 @@
 {
-        "notes": []
+  "notes": [
+    {
+      "id": "1333f1f8-729c-4ffb-b06a-0e8c0877ddd8",
+      "title": "dogs",
+      "text": "cats"
+    }
+  ]
 }
 
-
+///implement writeDb function - finish save notes
