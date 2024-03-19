@@ -44,7 +44,7 @@ function submit_note (){
       title: titler.value,
       text: bodyr.value,  
     }; 
-    fetch('../../api/notes.js/save', {
+    fetch('./save', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

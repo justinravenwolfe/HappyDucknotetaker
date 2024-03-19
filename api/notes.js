@@ -22,7 +22,7 @@ const fs = require('fs');   ///to save data of the notes
 const heroku = require('heroku');
 
 //Used to make unique ids for each note in the database 
-const uuid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 //Made a note <- 5e6ht7s <- note_id 
 //Used to allow things to be sent in a json form from front-end t back-end
 const bodyParser = require('body-parser'); 
@@ -71,7 +71,7 @@ app.post('/save', async(req, res) => {
 const {title, text} = req.body; 
 //data model <- Form of the database data
 const newNote = {
-    id: uuid(),//random string of letters/numbers 
+    id: uuidv4(),//random string of letters/numbers 
     title,
     text
 }; 
