@@ -6,7 +6,7 @@ body {
 }
 
 .save-note, .new-note, .clear-btn {
-  display: none;
+ /* display: none;*/
 }
 
 .icons {
@@ -14,6 +14,7 @@ body {
   margin-right: 15px;
   font-size: 1.5rem;
   cursor: pointer;
+  
 }
 
 .note-textarea,
