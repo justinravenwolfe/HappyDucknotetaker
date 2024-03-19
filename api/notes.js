@@ -60,7 +60,7 @@ app.get('/', async(req, res) => {
 app.get('/notes', async(req, res) => {
 
     
-  res.sendFile("./notes.html")
+  res.redirect("/notes.html")
     //Code to load in the notes 
     
 });
