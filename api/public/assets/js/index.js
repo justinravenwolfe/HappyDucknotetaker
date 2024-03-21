@@ -53,6 +53,7 @@ function submit_note (){
       body: JSON.stringify(curr_note)
     }).then(response => {
       if (response.ok) {
+        getAndRenderNotes()
         return response.json();
       }
       throw new Error('Network response was not ok.');
@@ -197,7 +198,7 @@ const renderNoteList = async (notes) => {
   
   });
 
-  console.log(noteListItems)
+  document.getElementById("list-group").innerHTML=""
   for(let el of noteListItems){
     document.getElementById("list-group").appendChild(el)
   }
