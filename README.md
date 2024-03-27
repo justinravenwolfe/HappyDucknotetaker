@@ -26,3 +26,4 @@ MIT
 - **Email:** [justinravenwolfe@gmail.com]
 
 github url:https://github.com/justinravenwolfe/HappyDucknotetaker
+Deployed url: https://notetaker1017-c633add2fbff.herokuapp.com/
