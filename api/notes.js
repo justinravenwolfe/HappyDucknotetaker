@@ -80,13 +80,17 @@ const writeDb = (data, callback) => {
 
 //Navigation through the website
 app.get('/', async(req, res) => {
-
-    //res.send("hello")
     const indexPath = path.resolve(__dirname, 'public/index.html');
-
-
     res.sendFile(indexPath);
 });
+
+app.get('/notes.html', async(req, res) => {
+    const indexPath = path.resolve(__dirname, 'public/notes.html');
+    res.sendFile(indexPath);
+});
+
+
+
 app.get('/notes', async(req, res) => {
 
     
