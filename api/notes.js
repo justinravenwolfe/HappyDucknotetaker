@@ -82,7 +82,7 @@ const writeDb = (data, callback) => {
 app.get('/', async(req, res) => {
 
     //res.send("hello")
-    const indexPath = path.resolve(__dirname, 'index.html');
+    const indexPath = path.resolve(__dirname, 'public/index.html');
 
 
     res.sendFile(indexPath);
