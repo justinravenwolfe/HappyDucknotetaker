@@ -39,11 +39,11 @@ const port = process.env.PORT || 3000;
 //Want everything to be sent as a JSON
 app.use(bodyParser.json()); 
 //Webpages we'll show/edit <-The node can connect to the html files
-app.use(express.static('./public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Path to the database 
-const db_file = './db/db.json';
+const db_file = path.join(__dirname, 'db/db.json')
 
 //Read/return all the data from the database
 
@@ -83,12 +83,6 @@ app.get('/', async(req, res) => {
     const indexPath = path.resolve(__dirname, 'public/index.html');
     res.sendFile(indexPath);
 });
-
-app.get('/notes.html', async(req, res) => {
-    const indexPath = path.resolve(__dirname, 'public/notes.html');
-    res.sendFile(indexPath);
-});
-
 
 
 app.get('/notes', async(req, res) => {
