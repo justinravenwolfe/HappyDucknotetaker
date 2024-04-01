@@ -67,7 +67,7 @@ function submit_note (){
 
 
 const deleteNote = (id) =>
-  fetch(`/api/notes/${id}`, {
+  fetch(`/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -106,12 +106,13 @@ const handleNoteSave = () => {
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
+  console.log('Jake and Rommell')
   // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
-
+console.log(noteId)
   if (activeNote.id === noteId) {
     activeNote = {};
   }
@@ -179,7 +180,6 @@ const renderNoteList = async (notes) => {
         'delete-note'
       );
       delBtnEl.addEventListener('click', handleNoteDelete);
-      delBtnEl.addEventListener('click', () => {console.log('Jake and Rommell') });
       liEl.append(delBtnEl);
     }
 
